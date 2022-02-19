@@ -1,0 +1,37 @@
+<div>
+    <ng-container *ngIf="productFormGroup">
+
+    <ng-container *ngIf="state as data">
+        <ng-container *ngIf="data.dataState==productsStateEnum.LOADING">
+         LOADING......
+        </ng-container>
+        <ng-container *ngIf="data.dataState==productsStateEnum.LOADED">
+            <div class="alert-success container p-3 m-3">
+                <span>Product saved Successfully</span>
+                <button class="btn btn-success ml-3" (click)="newProduct()">New Product</button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="data.dataState==productsStateEnum.NEW">
+            <form [formGroup]="productFormGroup" (ngSubmit)="onSaveProduct()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" formControlName="name" id="name" [ngClass]="{'is-invalid':submitted && productFormGroup.controls.name.errors}">
+                    <div *ngIf="submitted && productFormGroup.controls.name.errors" class="invalid-feedback">
+                        <div *ngIf="productFormGroup.controls.name.errors.required">
+                            Name is Required
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </ng-container>
+        
+        
+
+    </ng-container>
+    
+    
+    
+    </ng-container>
+    
+</div>
